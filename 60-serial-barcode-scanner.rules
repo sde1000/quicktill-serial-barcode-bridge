@@ -1,0 +1,12 @@
+# udev rules for USB-connected serial barcode scanners
+
+# These rules ensure the devices are accessible by members of group
+# "dialout", and create symlinks in /dev/barcode to the appropriate
+# serial devices.
+
+# Fujian Newland in serial COM mode, eg. Bluehresy or Proster
+KERNEL=="ttyACM[0-9]*", SUBSYSTEM=="tty", ATTRS{idVendor}=="1eab", ATTRS{idProduct}=="8306", MODE="660", GROUP="dialout", SYMLINK+="barcode/scanner-%n"
+KERNEL=="ttyACM[0-9]*", SUBSYSTEM=="tty", ATTRS{idVendor}=="1eab", ATTRS{idProduct}=="0c06", MODE="660", GROUP="dialout", SYMLINK+="barcode/scanner-%n"
+
+# "BLMicroelectronics Virtual COM Port", eg. Netum
+KERNEL=="ttyACM[0-9]*", SUBSYSTEM=="tty", ATTRS{idVendor}=="0488", ATTRS{idProduct}=="5788", MODE="660", GROUP="dialout", SYMLINK+="barcode/scanner-%n"

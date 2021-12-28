@@ -1,0 +1,14 @@
+[Unit]
+Description=Serial barcode scanner to quicktill bridge
+After=network.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+Group=dialout
+ExecStart=/usr/sbin/quicktill-serial-barcode-bridge
+Restart=always
+RestartSec=10s
+
+[Install]
+WantedBy=multi-user.target
